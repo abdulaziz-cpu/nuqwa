@@ -7,18 +7,19 @@ export const metadata = {
     description: 'The premier platform for Arabic art.',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
     params,
 }: {
     children: React.ReactNode;
-    params: { lang: string };
+    params: Promise<{ lang: string }>;
 }) {
-    const lang = params.lang || 'en';
-    const dir = lang === 'ar' ? 'rtl' : 'ltr';
+    const { lang } = await params;
+    const actualLang = lang || 'en';
+    const dir = actualLang === 'ar' ? 'rtl' : 'ltr';
 
     return (
-        <html lang={lang} dir={dir}>
+        <html lang={actualLang} dir={dir}>
             <body>
                 <Providers>{children}</Providers>
             </body>
