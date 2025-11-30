@@ -15,7 +15,7 @@
     "react-dom": "latest",
     "lucide-react": "latest",
     "next-auth": "beta",
-    "@prisma/client": "latest",
+    "@prisma/client": "^6.0.0",
     "openai": "latest",
     "wagmi": "latest",
     "viem": "latest",
@@ -23,7 +23,7 @@
     "@tanstack/react-query": "latest"
   },
   "devDependencies": {
-    "prisma": "latest",
+    "prisma": "^6.0.0",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
