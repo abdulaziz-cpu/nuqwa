@@ -72,22 +72,35 @@ export default auth((req) => {
     }
 
     // Rewrite Logic
-    // Rewrite Logic
+    // Skip rewriting if the path already contains the target segment
     if (currentHost === "app") {
-        return NextResponse.rewrite(new URL(`/${locale}/platform${finalPath}`, req.url));
+        if (!pathWithoutLocale.startsWith('/platform')) {
+            return NextResponse.rewrite(new URL(`/${locale}/platform${finalPath}`, req.url));
+        }
     }
 
     if (currentHost === "admin") {
-        return NextResponse.rewrite(new URL(`/${locale}/admin${finalPath}`, req.url));
+        if (!pathWithoutLocale.startsWith('/admin')) {
+            return NextResponse.rewrite(new URL(`/${locale}/admin${finalPath}`, req.url));
+        }
     }
 
     if (currentHost === "artists") {
-        return NextResponse.rewrite(new URL(`/${locale}/micro-store${finalPath}`, req.url));
+        if (!pathWithoutLocale.startsWith('/micro-store')) {
+            return NextResponse.rewrite(new URL(`/${locale}/micro-store${finalPath}`, req.url));
+        }
     }
 
     if (currentHost === "verify") {
-        return NextResponse.rewrite(new URL(`/${locale}/verify${finalPath}`, req.url));
+        if (!pathWithoutLocale.startsWith('/verify')) {
+            return NextResponse.rewrite(new URL(`/${locale}/verify${finalPath}`, req.url));
+        }
     }
 
-    return NextResponse.rewrite(new URL(`/${locale}/public${finalPath}`, req.url));
+    // Default to public for root domain
+    if (!pathWithoutLocale.startsWith('/public') && !pathWithoutLocale.startsWith('/platform') &&
+        !pathWithoutLocale.startsWith('/admin') && !pathWithoutLocale.startsWith('/verify') &&
+        !pathWithoutLocale.startsWith('/micro-store')) {
+        return NextResponse.rewrite(new URL(`/${locale}/public${finalPath}`, req.url));
+    }
 })
