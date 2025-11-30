@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  ARTIST
+  COLLECTOR
+}
+
+enum ArtworkStatus {
+  AVAILABLE
+  SOLD
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  SHIPPED
+  DELIVERED
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  password  String?  // Hashed, optional for OAuth
+  image     String?
+  role      UserRole @default(COLLECTOR)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  artistProfile ArtistProfile?
+  orders        Order[]
+  artworks      Artwork[] // If artist, these are their works
+}
+
+model ArtistProfile {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  bio    String?
+  style  String?
+  handle String  @unique // For micro-store URL: nuqwa.com/artists/[handle]
+  
+  verified Boolean @default(false) // Nafath verification status
+}
+
+model Artwork {
+  id          String        @id @default(cuid())
+  title       String
+  description String?
+  price       Decimal
+  imageUrl    String
+  status      ArtworkStatus @default(AVAILABLE)
+  
+  artistId    String
+  artist      User          @relation(fields: [artistId], references: [id])
+  
+  order       Order?
+  
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model Order {
+  id        String      @id @default(cuid())
+  status    OrderStatus @default(PENDING)
+  
+  buyerId   String
+  buyer     User        @relation(fields: [buyerId], references: [id])
+  
+  artworkId String      @unique
+  artwork   Artwork     @relation(fields: [artworkId], references: [id])
+  
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}

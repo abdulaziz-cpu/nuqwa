@@ -1,0 +1,36 @@
+{
+  "name": "nuqwa-platform",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "lucide-react": "latest",
+    "next-auth": "beta",
+    "@prisma/client": "latest",
+    "openai": "latest",
+    "wagmi": "latest",
+    "viem": "latest",
+    "@rainbow-me/rainbowkit": "latest",
+    "@tanstack/react-query": "latest"
+  },
+  "devDependencies": {
+    "prisma": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "typescript": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "hardhat": "latest",
+    "@nomicfoundation/hardhat-toolbox": "latest",
+    "dotenv": "latest"
+  }
+}

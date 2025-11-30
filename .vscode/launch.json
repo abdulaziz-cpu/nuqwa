@@ -1,0 +1,54 @@
+{
+    "configurations": [
+        {
+            "name": "Next.js: debug server-side",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script",
+                "dev"
+            ],
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "listening on port ([0-9]+)",
+                "uriFormat": "http://localhost:%s"
+            },
+            "env": {
+                "PATH": "C:\\Program Files\\nodejs;${env:PATH}"
+            }
+        },
+        {
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "request": "attach",
+            "type": "chrome",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "name": "Connect to server",
+            "type": "go",
+            "request": "attach",
+            "mode": "remote",
+            "remotePath": "${workspaceFolder}",
+            "port": 2345,
+            "host": "127.0.0.1"
+        },
+        {
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "request": "attach",
+            "type": "chrome",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "msedge",
+            "name": "http://localhost:3000/ar",
+            "request": "launch",
+            "url": "http://localhost:3000/ar"
+        }
+    ]
+}

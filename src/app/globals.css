@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Josefin+Sans:wght@300;400;600;700&display=swap');
+
+:root {
+  /* Typography */
+  --font-english: 'Josefin Sans', sans-serif;
+  --font-arabic: 'DG Heaven', 'Cairo', sans-serif;
+  /* Fallback to Cairo if DG Heaven is not local */
+  --font-primary: var(--font-english);
+  /* Default */
+
+  /* Brand Palette */
+  --color-digital-turquoise: #3FBAB3;
+  --color-desert-clay: #C68272;
+  --color-pure-mist: #F2F0F0;
+  --color-heritage-teal: #00847E;
+  --color-parchment-cream: #E9C89F;
+
+  /* Semantic Mappings */
+  --color-primary: var(--color-heritage-teal);
+  --color-primary-light: var(--color-digital-turquoise);
+  --color-secondary: var(--color-desert-clay);
+  --color-accent: var(--color-parchment-cream);
+
+  --color-bg-light: var(--color-pure-mist);
+  --color-bg-white: #FFFFFF;
+
+  --color-text-main: #1A202C;
+  --color-text-muted: #718096;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-english);
+  /* Default to English font, override with lang="ar" */
+  background-color: var(--color-bg-light);
+  color: var(--color-text-main);
+}
+
+/* Arabic text override */
+[lang="ar"] {
+  font-family: var(--font-arabic);
+}
+
+* {
+  box-sizing: border-box;
+}
