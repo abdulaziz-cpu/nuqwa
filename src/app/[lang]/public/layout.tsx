@@ -7,9 +7,10 @@ export default async function PublicLayout({
     params,
 }: {
     children: React.ReactNode;
-    params: { lang: string };
+    params: Promise<{ lang: string }>;
 }) {
-    const dict = await getDictionary(params.lang);
+    const { lang } = await params;
+    const dict = await getDictionary(lang);
 
     return (
         <div className="public-layout">
