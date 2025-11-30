@@ -1,8 +1,9 @@
 import React from 'react';
 import { getDictionary } from '../dictionaries';
 
-export default async function VerifyPage({ params }: { params: { lang: string } }) {
-    const dict = await getDictionary(params.lang);
+export default async function VerifyPage({ params }: { params: Promise<{ lang: string }> }) {
+    const { lang } = await params;
+    const dict = await getDictionary(lang);
 
     return (
         <div>

@@ -18,9 +18,10 @@ async function getArtistAndArtwork(handle: string) {
     };
 }
 
-export default async function ArtistStorePage({ params }: { params: { handle: string; lang: string } }) {
-    const dict = await getDictionary(params.lang);
-    const data = await getArtistAndArtwork(params.handle);
+export default async function ArtistStorePage({ params }: { params: Promise<{ handle: string; lang: string }> }) {
+    const { handle, lang } = await params;
+    const dict = await getDictionary(lang);
+    const data = await getArtistAndArtwork(handle);
 
     return (
         <div>
