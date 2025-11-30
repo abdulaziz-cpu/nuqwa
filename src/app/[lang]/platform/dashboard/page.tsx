@@ -1,6 +1,6 @@
 import React from 'react';
-import { WalletConnect } from '../../../components/WalletConnect';
-import { MintingInterface } from '../../../components/MintingInterface';
+import { WalletConnect } from '../../../../components/WalletConnect';
+import { MintingInterface } from '../../../../components/MintingInterface';
 
 export default function DashboardPage() {
     return (
