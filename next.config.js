@@ -1,14 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
-    webpack: (config, { isServer }) => {
-        // Exclude test files from thread-stream package
-        config.module.rules.push({
-            test: /node_modules\/thread-stream\/test/,
-            use: 'null-loader'
-        });
-
-        return config;
+    turbopack: {
+        resolveAlias: {
+            // Alias 'tap' to an empty file to prevent build errors from thread-stream tests
+            'tap': './src/lib/empty.js',
+        },
     },
 };
 
