@@ -17,20 +17,32 @@ export default function CheckoutPage() {
         const shipment = await LogisticsService.createShipment({
             orderId: "ord_" + Date.now(),
             recipient: { name: "Ahmed", address: "Riyadh", city: "Riyadh", phone: "0500000000" },
-            if(step === 'confirmation') {
-                return (
-                    <div style={{ padding: '4rem 2rem', textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
-                        <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🎉</div>
-                        <h1>Order Confirmed!</h1>
-                        <p style={{ color: '#666', marginBottom: '2rem' }}>Thank you for your purchase. Your order #{orderId} has been placed.</p>
-                        <div style={{ padding: '1.5rem', background: '#f9f9f9', borderRadius: '8px', textAlign: 'left' }}>
-                            <p><strong>Status:</strong> Paid</p>
-                            <p><strong>Shipping:</strong> SPL Standard (Tracking: SPL{Math.floor(Math.random() * 100000)})</p>
-                            <p><strong>Estimated Delivery:</strong> 3-5 Business Days</p>
-                        </div>
-                        <a href="/" style={{ display: 'inline-block', marginTop: '2rem', color: 'var(--color-primary)', textDecoration: 'underline' }}>Return to Home</a>
-                    </div>
-                );
+            weightKg: 2.5,
+        });
+
+        // 2. Process Payment (Mock)
+        await processPayment(15400, "SAR", "card_mock");
+
+        // 3. Set order confirmed
+        setOrderId("ord_" + Date.now());
+        setStep('confirmation');
+        setLoading(false);
+    };
+
+    if (step === 'confirmation') {
+        return (
+            <div style={{ padding: '4rem 2rem', textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
+                <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🎉</div>
+                <h1>Order Confirmed!</h1>
+                <p style={{ color: '#666', marginBottom: '2rem' }}>Thank you for your purchase. Your order #{orderId} has been placed.</p>
+                <div style={{ padding: '1.5rem', background: '#f9f9f9', borderRadius: '8px', textAlign: 'left' }}>
+                    <p><strong>Status:</strong> Paid</p>
+                    <p><strong>Shipping:</strong> SPL Standard (Tracking: SPL{Math.floor(Math.random() * 100000)})</p>
+                    <p><strong>Estimated Delivery:</strong> 3-5 Business Days</p>
+                </div>
+                <a href="/" style={{ display: 'inline-block', marginTop: '2rem', color: 'var(--color-primary)', textDecoration: 'underline' }}>Return to Home</a>
+            </div>
+        );
     }
 
     return (

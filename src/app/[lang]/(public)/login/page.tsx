@@ -1,5 +1,5 @@
 import React from 'react';
-import { signIn } from '../../../auth'; // Server Action if using v5, or client side
+import { signIn } from '../../../../auth'; // Server Action if using v5, or client side
 // For simplicity in this stub, we'll use a client component approach or form actions
 
 export default function LoginPage() {

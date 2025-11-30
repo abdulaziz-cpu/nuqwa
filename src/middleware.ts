@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { auth } from '../auth'; // Import auth helper
+import { auth } from './auth'; // Import auth helper
 
 const locales = ['en', 'ar'];
 const defaultLocale = 'en';

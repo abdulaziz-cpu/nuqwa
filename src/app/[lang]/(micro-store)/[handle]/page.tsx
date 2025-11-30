@@ -1,5 +1,5 @@
 import React from 'react';
-import { getDictionary } from '../../../dictionaries';
+import { getDictionary } from '../../dictionaries';
 
 // Mock DB Fetch
 async function getArtistAndArtwork(handle: string) {
