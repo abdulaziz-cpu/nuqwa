@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { NafathService } from '../../../lib/integrations/nafath';
+import { NafathService } from '@/lib/integrations/nafath';
 
 export default function IdentityVerificationPage() {
     const [nationalId, setNationalId] = useState('');
